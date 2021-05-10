@@ -91,10 +91,6 @@ const styles = StyleSheet.create({
     width: Number(`${windowWidth}`),
     height: 300
   },
-  map: {
-    width: Dimensions.get('window').width,
-    height: 300
-  },
   icons: {
     position: 'absolute',
     justifyContent: 'space-evenly',

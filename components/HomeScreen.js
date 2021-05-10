@@ -9,9 +9,13 @@ import {
   Text
 } from 'react-native'
 import Card from '../components/Card'
+import SelectCity from '../components/SelectCity'
+import Map from '../components/Map'
+import CitiesModal from '../components/CitiesModal'
 
 export default function MessageScreen({ navigation }) {
   const [text, setText] = useState('')
+  const [modalVisible, setModalVisible] = useState(false)
   const onChangeText = value => {
     setText(value)
   }
@@ -20,6 +24,14 @@ export default function MessageScreen({ navigation }) {
   }
   return (
     <SafeAreaView>
+      <CitiesModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+      <View style={styles.location}>
+        <SelectCity setModalVisible={setModalVisible} />
+        <Map navigation={navigation} />
+      </View>
       <View style={styles.buttonContainer}>
         <Button title='Rent' />
         <Button title='Sell' />
@@ -69,5 +81,11 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginVertical: 20
+  },
+  location: {
+    marginHorizontal: 10,
+    marginVertical: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 })
