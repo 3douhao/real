@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+  Dimensions,
   SafeAreaView,
   Pressable,
   View,
@@ -8,6 +9,8 @@ import {
   Modal,
   Alert
 } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import Constants from 'expo-constants'
 
 const CitiesModal = ({
   navigation,
@@ -18,20 +21,29 @@ const CitiesModal = ({
     setModalVisible(!modalVisible)
   }
   return (
-    <View>
+    <View style={styles.modalContainer}>
       <Modal
-        style={styles.modal}
         visible={modalVisible}
         animationType='slide'
         onRequestClose={() =>
           Alert.alert('modal has been closed')
         }
       >
-        <View style={styles.container}>
-          <Text style={styles.text}>Hello world</Text>
+        <View style={styles.optionsContainer}>
           <Pressable onPress={onPress}>
-            <Text style={styles.text}>Hide Modal</Text>
+            <Ionicons
+              name='close-outline'
+              size={24}
+              color='black'
+            />
           </Pressable>
+          <Text style={styles.text}>Choose A City</Text>
+          <Ionicons
+            style={styles.icon}
+            name='close-outline'
+            size={24}
+            color='black'
+          />
         </View>
       </Modal>
     </View>
@@ -39,16 +51,19 @@ const CitiesModal = ({
 }
 
 export default CitiesModal
-
 const styles = StyleSheet.create({
   text: {
     fontSize: 29
   },
-  container: {
-    marginVertical: 50
+  optionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: Constants.statusBarHeight,
+    marginHorizontal: 5,
+    // width: '100%',
+    alignItems: 'center'
   },
-  modal: {
-    backgroundColor: 'red',
-    flex: 1
+  icon: {
+    color: 'white'
   }
 })
