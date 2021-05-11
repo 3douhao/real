@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+  TextInput,
   Dimensions,
   SafeAreaView,
   Pressable,
@@ -12,6 +13,8 @@ import {
 import { Ionicons } from '@expo/vector-icons'
 import Constants from 'expo-constants'
 
+import CitiesList from '../components/CitiesList'
+
 const CitiesModal = ({
   navigation,
   modalVisible,
@@ -21,32 +24,35 @@ const CitiesModal = ({
     setModalVisible(!modalVisible)
   }
   return (
-    <View style={styles.modalContainer}>
-      <Modal
-        visible={modalVisible}
-        animationType='slide'
-        onRequestClose={() =>
-          Alert.alert('modal has been closed')
-        }
-      >
-        <View style={styles.optionsContainer}>
-          <Pressable onPress={onPress}>
-            <Ionicons
-              name='close-outline'
-              size={24}
-              color='black'
-            />
-          </Pressable>
-          <Text style={styles.text}>Choose A City</Text>
+    <Modal
+      visible={modalVisible}
+      animationType='slide'
+      onRequestClose={() =>
+        Alert.alert('modal has been closed')
+      }
+    >
+      <View style={styles.optionsContainer}>
+        <Pressable onPress={onPress}>
           <Ionicons
-            style={styles.icon}
             name='close-outline'
             size={24}
             color='black'
           />
+        </Pressable>
+        <View style={styles.searchBox}>
+          <Ionicons
+            name='search-outline'
+            size={24}
+            color='gray'
+          />
+          <TextInput
+            placeholder='input a city'
+            style={styles.inputBox}
+          />
         </View>
-      </Modal>
-    </View>
+      </View>
+      <CitiesList />
+    </Modal>
   )
 }
 
@@ -59,11 +65,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: Constants.statusBarHeight,
-    marginHorizontal: 5,
-    // width: '100%',
+    marginBottom: 10,
+    marginHorizontal: 10,
     alignItems: 'center'
   },
-  icon: {
-    color: 'white'
+  inputBox: {
+    marginHorizontal: 5
+  },
+  searchBox: {
+    paddingHorizontal: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+    borderColor: 'gray',
+    borderWidth: 1,
+    flex: 1,
+    flexDirection: 'row'
   }
 })
