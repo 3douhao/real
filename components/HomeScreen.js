@@ -4,7 +4,6 @@ import {
   View,
   Button,
   TextInput,
-  SafeAreaView,
   StyleSheet,
   Text
 } from 'react-native'
@@ -13,17 +12,20 @@ import SelectCity from '../components/SelectCity'
 import Map from '../components/Map'
 import CitiesModal from '../components/CitiesModal'
 
+import SearchBox from '../components/SearchBox'
+import AppSafeAreaView from '../components/AppSafeAreaView'
+
 export default function MessageScreen({ navigation }) {
   const [text, setText] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const onChangeText = value => {
     setText(value)
   }
-  const onPress = () => {
-    navigation.navigate('DetailsScreen')
+  const onPress = screen => {
+    navigation.navigate(screen)
   }
   return (
-    <SafeAreaView>
+    <AppSafeAreaView>
       <CitiesModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
@@ -34,26 +36,28 @@ export default function MessageScreen({ navigation }) {
       </View>
       <View style={styles.buttonContainer}>
         <Button title='Rent' />
-        <Button title='Sell' />
-      </View>
-      <View style={styles.inputContainer}>
-        <Ionicons name='search' size={24} color='gray' />
-        <TextInput
-          value={text}
-          onChangeText={onChangeText}
-          placeholder='Search'
-          style={styles.input}
+        <Button
+          title='Sell'
+          onPress={() => onPress('CreateListingScreen')}
         />
       </View>
+      <SearchBox
+        placeholder='Start searching here'
+        setText={setText}
+        padding={10}
+        margin={10}
+        height={40}
+        text={text}
+      />
       <View style={styles.cardContainer}>
         <Card />
         <Card />
       </View>
       <Button
         title='go to details screen'
-        onPress={onPress}
+        onPress={() => onPress('DetailsScreen')}
       />
-    </SafeAreaView>
+    </AppSafeAreaView>
   )
 }
 

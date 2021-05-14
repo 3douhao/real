@@ -1,10 +1,17 @@
 import React from 'react'
-import { Text, Button, SafeAreaView } from 'react-native'
+import {
+  Pressable,
+  Text,
+  Button,
+  SafeAreaView
+} from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { Ionicons } from '@expo/vector-icons'
 
 import HomeScreen from './HomeScreen'
 import SearchResultScreen from './SearchResultScreen'
 import DetailsScreen from './DetailsScreen'
+import CreateListingScreen from './CreateListingScreen'
 
 const Stack = createStackNavigator()
 
@@ -12,26 +19,46 @@ export default function HomeStackNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: {
-          backgroundColor: 'dodgerblue'
-        },
-        headerTintColor: '#fff'
+        headerTintColor: '#fff',
+        headerShown: false
       }}
       initialRouteName='HomeScreen'
-      headerMode='none'
     >
       <Stack.Screen
         name='HomeScreen'
         component={HomeScreen}
         options={{
-          headerStyle: {
-            backgroundColor: 'dodgerblue'
-          },
+          headerStyle: {},
           headerTitleStyle: {
             fontWeight: 'bold'
           },
           headerTintColor: '#fff',
           title: 'Home'
+        }}
+      />
+      <Stack.Screen
+        name='CreateListingScreen'
+        component={CreateListingScreen}
+        options={{
+          headerShown: true,
+          headerBackTitleStyle: {
+            display: 'none'
+          },
+          headerLeftContainerStyle: {
+            paddingLeft: 10
+          },
+          headerBackImage: () => (
+            <Ionicons
+              name='chevron-back'
+              size={24}
+              color='black'
+            />
+          ),
+          headerTitleStyle: {
+            fontWeight: 'bold'
+          },
+          headerTintColor: 'black',
+          title: '我要卖房'
         }}
       />
       <Stack.Screen

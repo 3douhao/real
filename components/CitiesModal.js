@@ -14,6 +14,7 @@ import { Ionicons } from '@expo/vector-icons'
 import Constants from 'expo-constants'
 
 import CitiesList from '../components/CitiesList'
+import SearchBox from '../components/SearchBox'
 
 const CitiesModal = ({
   navigation,
@@ -23,6 +24,7 @@ const CitiesModal = ({
   const onPress = () => {
     setModalVisible(!modalVisible)
   }
+  const [text, setText] = useState('')
   return (
     <Modal
       visible={modalVisible}
@@ -39,17 +41,15 @@ const CitiesModal = ({
             color='black'
           />
         </Pressable>
-        <View style={styles.searchBox}>
-          <Ionicons
-            name='search-outline'
-            size={24}
-            color='gray'
-          />
-          <TextInput
-            placeholder='input a city'
-            style={styles.inputBox}
-          />
-        </View>
+        <SearchBox
+          name='search'
+          text={text}
+          placeholder='Search your city'
+          padding={10}
+          margin={10}
+          height={30}
+          setText={setText}
+        />
       </View>
       <CitiesList />
     </Modal>
@@ -63,22 +63,23 @@ const styles = StyleSheet.create({
   },
   optionsContainer: {
     flexDirection: 'row',
+    paddingRight: 30,
     justifyContent: 'space-between',
     marginTop: Constants.statusBarHeight,
     marginBottom: 10,
     marginHorizontal: 10,
     alignItems: 'center'
-  },
-  inputBox: {
-    marginHorizontal: 5
-  },
-  searchBox: {
-    paddingHorizontal: 5,
-    borderRadius: 5,
-    alignItems: 'center',
-    borderColor: 'gray',
-    borderWidth: 1,
-    flex: 1,
-    flexDirection: 'row'
   }
+  // inputBox: {
+  //   marginHorizontal: 5
+  // },
+  // searchBox: {
+  //   paddingHorizontal: 5,
+  //   borderRadius: 5,
+  //   alignItems: 'center',
+  //   borderColor: 'gray',
+  //   borderWidth: 1,
+  //   flex: 1,
+  //   flexDirection: 'row'
+  // }
 })

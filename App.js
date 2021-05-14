@@ -1,6 +1,9 @@
 import React from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { NavigationContainer } from '@react-navigation/native'
+import {
+  NavigationContainer,
+  DefaultTheme
+} from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import {
   StyleSheet,
@@ -10,6 +13,7 @@ import {
 } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
+import Select from './components/Select'
 import HomeScreen from './components/HomeScreen'
 import SearchResultScreen from './components/SearchResultScreen'
 
@@ -20,9 +24,16 @@ import ProfileStack from './components/ProfileStack'
 
 const Tab = createMaterialBottomTabNavigator()
 
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    background: 'white'
+  }
+}
+
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       <Tab.Navigator
         barStyle={{
           backgroundColor: 'white'
@@ -34,6 +45,19 @@ export default function App() {
           component={HomeStack}
           options={{
             title: 'Home',
+            tabBarIcon: ({ focused }) => (
+              <MaterialCommunityIcons
+                name='home'
+                size={focused ? 26 : 20}
+                color={focused ? 'dodgerblue' : 'gray'}
+              />
+            )
+          }}
+        />
+        <Tab.Screen
+          name='Select'
+          component={Select}
+          options={{
             tabBarIcon: ({ focused }) => (
               <MaterialCommunityIcons
                 name='home'
