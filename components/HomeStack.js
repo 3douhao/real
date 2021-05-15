@@ -19,7 +19,6 @@ export default function HomeStackNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTintColor: '#fff',
         headerShown: false
       }}
       initialRouteName='HomeScreen'
@@ -32,7 +31,6 @@ export default function HomeStackNavigator() {
           headerTitleStyle: {
             fontWeight: 'bold'
           },
-          headerTintColor: '#fff',
           title: 'Home'
         }}
       />
@@ -41,9 +39,7 @@ export default function HomeStackNavigator() {
         component={CreateListingScreen}
         options={{
           headerShown: true,
-          headerBackTitleStyle: {
-            display: 'none'
-          },
+          headerBackTitleVisible: false,
           headerLeftContainerStyle: {
             paddingLeft: 10
           },
@@ -57,7 +53,6 @@ export default function HomeStackNavigator() {
           headerTitleStyle: {
             fontWeight: 'bold'
           },
-          headerTintColor: 'black',
           title: '我要卖房'
         }}
       />
