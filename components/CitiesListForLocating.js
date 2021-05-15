@@ -31,7 +31,7 @@ const Item = ({ item }) => (
   </View>
 )
 
-const CitiesList = () => {
+const CitiesListForLocating = () => {
   return (
     <SectionList
       sections={DATA}
@@ -44,7 +44,7 @@ const CitiesList = () => {
   )
 }
 
-export default CitiesList
+export default CitiesListForLocating
 
 const styles = StyleSheet.create({
   header: {
@@ -55,6 +55,5 @@ const styles = StyleSheet.create({
   },
   item: {
     padding: 10
-  },
-  container: {}
+  }
 })

@@ -12,6 +12,7 @@ import HomeScreen from './HomeScreen'
 import SearchResultScreen from './SearchResultScreen'
 import DetailsScreen from './DetailsScreen'
 import CreateListingScreen from './CreateListingScreen'
+import CitiesListScreen from '../components/CitiesListScreen'
 
 const Stack = createStackNavigator()
 
@@ -54,6 +55,25 @@ export default function HomeStackNavigator() {
             fontWeight: 'bold'
           },
           title: '我要卖房'
+        }}
+      />
+      <Stack.Screen
+        name='CitiesListScreen'
+        component={CitiesListScreen}
+        options={{
+          headerShown: true,
+          headerBackTitleVisible: false,
+          title: '请选择城市',
+          headerBackImage: () => (
+            <Ionicons
+              name='chevron-back'
+              size={24}
+              color='black'
+            />
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 10
+          }
         }}
       />
       <Stack.Screen

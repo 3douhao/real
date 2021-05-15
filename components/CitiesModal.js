@@ -13,8 +13,8 @@ import {
 import { Ionicons } from '@expo/vector-icons'
 import Constants from 'expo-constants'
 
-import CitiesList from '../components/CitiesList'
 import SearchBox from '../components/SearchBox'
+import CitiesListForLocating from './CitiesListForLocating'
 
 const CitiesModal = ({
   navigation,
@@ -51,7 +51,7 @@ const CitiesModal = ({
           setText={setText}
         />
       </View>
-      <CitiesList />
+      <CitiesListForLocating />
     </Modal>
   )
 }
