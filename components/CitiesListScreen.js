@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Text,
+  Pressable,
   SectionList,
   View,
   TextInput,
@@ -80,9 +81,9 @@ const cities = [
 ]
 
 const Item = ({ item }) => (
-  <View>
+  <Pressable onPress=>
     <Text style={styles.item}>{item}</Text>
-  </View>
+  </Pressable>
 )
 
 const CitiesListScreen = () => {
