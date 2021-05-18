@@ -86,18 +86,25 @@ const Item = ({ item }) => (
   </Pressable>
 )
 
-const CitiesListScreen = () => {
+const CitiesListScreen = ({ navigation }) => {
+  const onPress = () =>
+    navigation.navigate('CitiInputScreen')
+
   return (
     <AppSafeAreaView>
       <View style={styles.container}>
-        <View style={styles.iconContainer}>
+        <Pressable
+          style={styles.iconContainer}
+          onPress={onPress}
+        >
           <Ionicons name='search' size={24} color='gray' />
           <TextInput
             placeholder='城市'
             placeholderTextColor='gray'
             style={styles.textInput}
+            editable={false}
           />
-        </View>
+        </Pressable>
       </View>
       <SectionList
         sections={cities}
