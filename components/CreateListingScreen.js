@@ -9,8 +9,10 @@ import {
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
+import useStore from '../store'
+
 const CreateListingScreen = ({ navigation }) => {
-  const [city, setCity] = useState('')
+  const { city } = useStore()
 
   const toCitiesListScreen = () => {
     navigation.navigate('CitiesListScreen')
@@ -25,9 +27,11 @@ const CreateListingScreen = ({ navigation }) => {
             style={styles.iconContainer}
             onPress={toCitiesListScreen}
           >
-            <Text style={styles.placeholder}>
-              {city ? city : '请选择'}
-            </Text>
+            {city ? (
+              <Text style={styles.city}>{city}</Text>
+            ) : (
+              <Text style={styles.placeholder}>请选择</Text>
+            )}
             <Ionicons
               name='chevron-forward'
               size={24}
@@ -62,5 +66,8 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  city: {
+    fontSize: 20
   }
 })

@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
+  Keyboard,
+  FlatList,
+  Pressable,
   TextInput,
   View,
   Text,
@@ -8,7 +11,30 @@ import {
 import AppSafeAreaView from './AppSafeAreaView'
 import { Ionicons } from '@expo/vector-icons'
 
-const CitiInputScreen = () => {
+import useStore from '../store'
+
+const Item = ({ item, onPress }) => (
+  <Pressable onPress={onPress}>
+    <Text style={styles.item}>{item}</Text>
+  </Pressable>
+)
+
+const CitiInputScreen = ({ navigation }) => {
+  const { city, cities, getCity } = useStore()
+  const [text, setText] = useState('')
+
+  const cityNames = cities.reduce(
+    (accu, curr) => accu.concat(curr.data),
+    []
+  )
+
+  const filteredCities = cityNames.filter(city =>
+    city.includes(text)
+  )
+  const onChangeText = value => setText(value)
+
+  const onPress = () =>
+    navigation.navigate('CitiesListScreen')
   return (
     <AppSafeAreaView>
       <View style={styles.container}>
@@ -18,10 +44,32 @@ const CitiInputScreen = () => {
             placeholder='城市'
             placeholderTextColor='gray'
             style={styles.textInput}
+            value={text}
+            onChangeText={onChangeText}
+            autoFocus={true}
           />
         </View>
-        <Text style={styles.text}>取消</Text>
+        <Pressable onPress={onPress}>
+          <Text style={styles.text}>取消</Text>
+        </Pressable>
       </View>
+      {text ? (
+        <FlatList
+          data={filteredCities}
+          // the following line is needed to select the city in one go. Otherwise the city won't respond to the first tap.
+          keyboardShouldPersistTaps='handled'
+          renderItem={({ item }) => (
+            <Item
+              item={item}
+              onPress={() => {
+                navigation.navigate('CreateListingScreen')
+                getCity(item)
+              }}
+            />
+          )}
+          keyExtractor={(item, idx) => item + idx}
+        />
+      ) : null}
     </AppSafeAreaView>
   )
 }
@@ -39,7 +87,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginHorizontal: 10
   },
-  textInput: { fontSize: 20 },
+  textInput: {
+    fontSize: 20,
+    flex: 1
+  },
   text: { color: 'dodgerblue' },
   container: {
     flexDirection: 'row',
@@ -48,5 +99,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
     justifyContent: 'space-evenly',
     alignItems: 'center'
+  },
+  header: {
+    backgroundColor: '#f8f8f8',
+    fontSize: 20,
+    color: 'gray',
+    padding: 10
+  },
+  item: {
+    padding: 20
   }
 })
