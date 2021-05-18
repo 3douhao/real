@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 const Map = ({ navigation }) => {
   const onPress = () => {
-    navigation.navigate('ProfileStack')
+    navigation.navigate('ProfileScreen')
   }
   return (
     <Pressable onPress={onPress} style={styles.container}>

@@ -14,77 +14,8 @@ import DetailsScreen from './DetailsScreen'
 import CreateListingScreen from './CreateListingScreen'
 import CitiesListScreen from '../components/CitiesListScreen'
 
-const Stack = createStackNavigator()
+const Tab = createMaterialBottomTabNavigator()
 
 export default function HomeStackNavigator() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-      initialRouteName='HomeScreen'
-    >
-      <Stack.Screen
-        name='HomeScreen'
-        component={HomeScreen}
-        options={{
-          headerStyle: {},
-          headerTitleStyle: {
-            fontWeight: 'bold'
-          },
-          title: 'Home'
-        }}
-      />
-      <Stack.Screen
-        name='CreateListingScreen'
-        component={CreateListingScreen}
-        options={{
-          headerShown: true,
-          headerBackTitleVisible: false,
-          headerLeftContainerStyle: {
-            paddingLeft: 10
-          },
-          headerBackImage: () => (
-            <Ionicons
-              name='chevron-back'
-              size={24}
-              color='black'
-            />
-          ),
-          headerTitleStyle: {
-            fontWeight: 'bold'
-          },
-          title: '我要卖房'
-        }}
-      />
-      <Stack.Screen
-        name='CitiesListScreen'
-        component={CitiesListScreen}
-        options={{
-          headerShown: true,
-          headerBackTitleVisible: false,
-          title: '请选择城市',
-          headerBackImage: () => (
-            <Ionicons
-              name='chevron-back'
-              size={24}
-              color='black'
-            />
-          ),
-          headerLeftContainerStyle: {
-            paddingLeft: 10
-          }
-        }}
-      />
-      <Stack.Screen
-        name='SearchResultScreen'
-        component={SearchResultScreen}
-      />
-
-      <Stack.Screen
-        name='DetailsScreen'
-        component={DetailsScreen}
-      />
-    </Stack.Navigator>
-  )
+  return <Text>This is supposed to be deleted</Text>
 }

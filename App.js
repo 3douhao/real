@@ -1,5 +1,5 @@
 import React from 'react'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { Ionicons } from '@expo/vector-icons'
 import {
   NavigationContainer,
   DefaultTheme
@@ -13,16 +13,13 @@ import {
 } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import Select from './components/Select'
-import HomeScreen from './components/HomeScreen'
+import CreateListingScreen from './components/CreateListingScreen'
+import CitiesListScreen from './components/CitiesListScreen'
+import DetailsScreen from './components/DetailsScreen'
+import TabScreen from './components/TabScreen'
 import SearchResultScreen from './components/SearchResultScreen'
 
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-
-import HomeStack from './components/HomeStack'
-import ProfileStack from './components/ProfileStack'
-
-const Tab = createMaterialBottomTabNavigator()
+const Stack = createStackNavigator()
 
 const theme = {
   ...DefaultTheme,
@@ -34,55 +31,67 @@ const theme = {
 export default function App() {
   return (
     <NavigationContainer theme={theme}>
-      <Tab.Navigator
-        barStyle={{
-          backgroundColor: 'white'
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
         }}
-        activeColor='dodgerblue'
+        initialRouteName='TabScreen'
       >
-        <Tab.Screen
-          name='HomeStack'
-          component={HomeStack}
+        <Stack.Screen
+          name='TabScreen'
+          component={TabScreen}
+        />
+        <Stack.Screen
+          name='CreateListingScreen'
+          component={CreateListingScreen}
           options={{
-            title: 'Home',
-            tabBarIcon: ({ focused }) => (
-              <MaterialCommunityIcons
-                name='home'
-                size={focused ? 26 : 20}
-                color={focused ? 'dodgerblue' : 'gray'}
+            headerShown: true,
+            headerBackTitleVisible: false,
+            headerLeftContainerStyle: {
+              paddingLeft: 10
+            },
+            headerBackImage: () => (
+              <Ionicons
+                name='chevron-back'
+                size={24}
+                color='black'
               />
-            )
+            ),
+            headerTitleStyle: {
+              fontWeight: 'bold'
+            },
+            title: '我要卖房'
           }}
         />
-        <Tab.Screen
-          name='Select'
-          component={Select}
+        <Stack.Screen
+          name='CitiesListScreen'
+          component={CitiesListScreen}
           options={{
-            tabBarIcon: ({ focused }) => (
-              <MaterialCommunityIcons
-                name='home'
-                size={focused ? 26 : 20}
-                color={focused ? 'dodgerblue' : 'gray'}
+            headerShown: true,
+            headerBackTitleVisible: false,
+            title: '请选择城市',
+            headerBackImage: () => (
+              <Ionicons
+                name='chevron-back'
+                size={24}
+                color='black'
               />
-            )
+            ),
+            headerLeftContainerStyle: {
+              paddingLeft: 10
+            }
           }}
         />
-        <Tab.Screen
-          // style={styles.tab}
-          name='ProfileStack'
-          component={ProfileStack}
-          options={{
-            title: 'Profile',
-            tabBarIcon: ({ focused }) => (
-              <MaterialCommunityIcons
-                name='account'
-                color={focused ? 'dodgerblue' : 'gray'}
-                size={focused ? 26 : 20}
-              />
-            )
-          }}
+        <Stack.Screen
+          name='SearchResultScreen'
+          component={SearchResultScreen}
         />
-      </Tab.Navigator>
+
+        <Stack.Screen
+          name='DetailsScreen'
+          component={DetailsScreen}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }

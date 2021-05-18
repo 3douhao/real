@@ -31,7 +31,7 @@ const SearchBox = ({
       flex: 1
     }
   })
-  const onChangeText = () => setText(value)
+  const onChangeText = value => setText(value)
   return (
     <View style={styles.inputContainer}>
       <Ionicons name='search' size={24} color='gray' />

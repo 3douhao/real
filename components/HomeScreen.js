@@ -15,7 +15,7 @@ import CitiesModal from '../components/CitiesModal'
 import SearchBox from '../components/SearchBox'
 import AppSafeAreaView from '../components/AppSafeAreaView'
 
-export default function MessageScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   const [text, setText] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const onChangeText = value => {

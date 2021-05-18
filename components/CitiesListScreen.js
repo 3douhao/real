@@ -81,7 +81,7 @@ const cities = [
 ]
 
 const Item = ({ item }) => (
-  <Pressable onPress=>
+  <Pressable onPress={() => console.log('a todo function')}>
     <Text style={styles.item}>{item}</Text>
   </Pressable>
 )
