@@ -48,6 +48,7 @@ export default function HomeScreen({ navigation }) {
         margin={10}
         height={40}
         text={text}
+        autoFocus={false}
       />
       <View style={styles.cardContainer}>
         <Card />

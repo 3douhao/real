@@ -13,7 +13,9 @@ import {
 } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import CitiInputScreen from './components/CitiInputScreen'
+import EstateNameInputScreen from './components/EstateNameInputScreen'
+import WebViewScreen from './components/WebViewScreen'
+import CityInputScreen from './components/CityInputScreen'
 import CreateListingScreen from './components/CreateListingScreen'
 import CitiesListScreen from './components/CitiesListScreen'
 import DetailsScreen from './components/DetailsScreen'
@@ -93,12 +95,31 @@ export default function App() {
           component={DetailsScreen}
         />
         <Stack.Screen
-          name='CitiInputScreen'
-          component={CitiInputScreen}
+          name='CityInputScreen'
+          component={CityInputScreen}
           options={{
             headerShown: true,
             headerBackTitleVisible: false,
             title: '请输入城市名',
+            headerBackImage: () => (
+              <Ionicons
+                name='chevron-back'
+                size={24}
+                color='black'
+              />
+            ),
+            headerLeftContainerStyle: {
+              paddingLeft: 10
+            }
+          }}
+        />
+        <Stack.Screen
+          name='EstateNameInputScreen'
+          component={EstateNameInputScreen}
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: false,
+            title: '请输入小区名',
             headerBackImage: () => (
               <Ionicons
                 name='chevron-back'

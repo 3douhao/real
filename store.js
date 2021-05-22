@@ -2,7 +2,7 @@ import create from 'zustand'
 
 const useStore = create(set => ({
   city: '',
-  getCity: value => set(() => ({ city: value })),
+  setCity: value => set(() => ({ city: value })),
   cities: [
     {
       title: 'A',
@@ -43,7 +43,26 @@ const useStore = create(set => ({
         'Shenzhen'
       ]
     }
-  ]
+  ],
+  estateName: '',
+  setEstateName: value =>
+    set(() => ({ estateName: value })),
+  estateNames: [
+    '豪德山庄',
+    '北京印象',
+    '金陵上府',
+    'beijing',
+    'Shanghai'
+  ],
+  bedroom: '',
+  setBedroom: value => set(() => ({ bedroom: value })),
+  livingroom: '',
+  setLivingroom: value =>
+    set(() => ({ livingroom: value })),
+  bathroom: '',
+  setBathroom: value => set(() => ({ bathroom: value })),
+  layout: '',
+  setLayout: value => set(() => ({ layout: value }))
 }))
 
 export default useStore

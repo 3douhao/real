@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  Keyboard,
   FlatList,
   Pressable,
   TextInput,
@@ -12,15 +11,10 @@ import AppSafeAreaView from './AppSafeAreaView'
 import { Ionicons } from '@expo/vector-icons'
 
 import useStore from '../store'
+import Item from '../components/Item'
 
-const Item = ({ item, onPress }) => (
-  <Pressable onPress={onPress}>
-    <Text style={styles.item}>{item}</Text>
-  </Pressable>
-)
-
-const CitiInputScreen = ({ navigation }) => {
-  const { city, cities, getCity } = useStore()
+const CityInputScreen = ({ navigation }) => {
+  const { city, cities, setCity } = useStore()
   const [text, setText] = useState('')
 
   const cityNames = cities.reduce(
@@ -63,7 +57,7 @@ const CitiInputScreen = ({ navigation }) => {
               item={item}
               onPress={() => {
                 navigation.navigate('CreateListingScreen')
-                getCity(item)
+                setCity(item)
               }}
             />
           )}
@@ -74,7 +68,7 @@ const CitiInputScreen = ({ navigation }) => {
   )
 }
 
-export default CitiInputScreen
+export default CityInputScreen
 
 const styles = StyleSheet.create({
   iconContainer: {

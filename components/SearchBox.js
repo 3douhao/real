@@ -13,7 +13,8 @@ const SearchBox = ({
   placeholder,
   margin,
   padding,
-  height
+  height,
+  autoFocus
 }) => {
   const styles = StyleSheet.create({
     inputContainer: {
@@ -27,8 +28,8 @@ const SearchBox = ({
     },
     input: {
       height: height,
-      paddingHorizontal: padding,
-      flex: 1
+      flex: 1,
+      paddingHorizontal: padding
     }
   })
   const onChangeText = value => setText(value)
@@ -40,6 +41,7 @@ const SearchBox = ({
         onChangeText={onChangeText}
         placeholder={placeholder}
         style={styles.input}
+        autoFocus={autoFocus}
       />
     </View>
   )

@@ -10,14 +10,24 @@ import {
 import { Ionicons } from '@expo/vector-icons'
 
 import useStore from '../store'
+import EstateNameInputScreen from './EstateNameInputScreen'
+import Pickers from '../components/Pickers'
 
 const CreateListingScreen = ({ navigation }) => {
-  const { city } = useStore()
+  const [visible, setVisible] = useState(false)
+  const { city, estateName, layout } = useStore()
+
+  const openPicker = () => {
+    setVisible(true)
+  }
 
   const toCitiesListScreen = () => {
     navigation.navigate('CitiesListScreen')
   }
 
+  const toEstateNameInputScreen = () => {
+    navigation.navigate('EstateNameInputScreen')
+  }
   return (
     <SafeAreaView>
       <View style={styles.itemsContainer}>
@@ -39,6 +49,48 @@ const CreateListingScreen = ({ navigation }) => {
             />
           </Pressable>
         </View>
+        <View style={styles.itemContainer}>
+          <Text style={styles.text}>小区</Text>
+          <Pressable
+            style={styles.iconContainer}
+            onPress={toEstateNameInputScreen}
+          >
+            {estateName ? (
+              <Text style={styles.text}>{estateName}</Text>
+            ) : (
+              <Text style={styles.placeholder}>请选择</Text>
+            )}
+            <Ionicons
+              name='chevron-forward'
+              size={24}
+              color='black'
+            />
+          </Pressable>
+        </View>
+        <View style={styles.itemContainer}>
+          <Text style={styles.text}>户型</Text>
+          <Pressable
+            style={styles.iconContainer}
+            onPress={openPicker}
+          >
+            {layout ? (
+              <Text style={styles.text}>{layout}</Text>
+            ) : (
+              <Text style={styles.placeholder}>请选择</Text>
+            )}
+            <Ionicons
+              name='chevron-forward'
+              size={24}
+              color='black'
+            />
+          </Pressable>
+        </View>
+        {visible ? (
+          <Pickers
+            visible={visible}
+            setVisible={setVisible}
+          />
+        ) : null}
       </View>
     </SafeAreaView>
   )
@@ -66,8 +118,5 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
     alignItems: 'center'
-  },
-  city: {
-    fontSize: 20
   }
 })

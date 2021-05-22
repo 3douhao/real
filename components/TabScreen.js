@@ -1,4 +1,5 @@
 import React from 'react'
+import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet } from 'react-native'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -6,6 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import ProfileScreen from '../components/ProfileScreen'
 import HomeScreen from '../components/HomeScreen'
 import NewsScreen from '../components/NewsScreen'
+import WebViewScreen from '../components/WebViewScreen'
 
 const Tab = createMaterialBottomTabNavigator()
 
@@ -16,7 +18,6 @@ const TabScreen = () => {
       barStyle={{
         backgroundColor: 'white'
       }}
-      activeColor='dodgerblue'
     >
       <Tab.Screen
         name='HomeScreen'

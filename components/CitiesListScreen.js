@@ -21,7 +21,7 @@ const CitiesListScreen = ({ navigation }) => {
   const { cities } = useStore()
 
   const onPress = () =>
-    navigation.navigate('CitiInputScreen')
+    navigation.navigate('CityInputScreen')
 
   return (
     <AppSafeAreaView>
