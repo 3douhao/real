@@ -5,8 +5,8 @@ import { View, Text, StyleSheet } from 'react-native'
 import SegmentedPicker from 'react-native-segmented-picker'
 import useStore from '../store'
 
-const LayoutPickers = ({ visible, setVisible }) => {
-  const pickersRef = useRef()
+const LayoutPicker = ({ visible, setVisible }) => {
+  const pickerRef = useRef()
   const {
     bedroom,
     livingroom,
@@ -30,7 +30,7 @@ const LayoutPickers = ({ visible, setVisible }) => {
 
   return (
     <SegmentedPicker
-      ref={pickersRef}
+      ref={pickerRef}
       visible={visible}
       onCancel={onCancel}
       onConfirm={onConfirm}
@@ -62,6 +62,6 @@ const LayoutPickers = ({ visible, setVisible }) => {
   )
 }
 
-export default LayoutPickers
+export default LayoutPicker
 
 const styles = StyleSheet.create({})

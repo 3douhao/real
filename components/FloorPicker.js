@@ -5,8 +5,8 @@ import { View, Text, StyleSheet } from 'react-native'
 import SegmentedPicker from 'react-native-segmented-picker'
 import useStore from '../store'
 
-const FloorPickers = ({ visible, setVisible }) => {
-  const pickersRef = useRef()
+const FloorPicker = ({ visible, setVisible }) => {
+  const pickerRef = useRef()
   const { floor, setFloor } = useStore()
   const [n, setN] = useState('1')
 
@@ -37,7 +37,7 @@ const FloorPickers = ({ visible, setVisible }) => {
 
   return (
     <SegmentedPicker
-      ref={pickersRef}
+      ref={pickerRef}
       visible={visible}
       onValueChange={({ value }) => {
         if (Number(value) < 0) {
@@ -69,6 +69,6 @@ const FloorPickers = ({ visible, setVisible }) => {
   )
 }
 
-export default FloorPickers
+export default FloorPicker
 
 const styles = StyleSheet.create({})

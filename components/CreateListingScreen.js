@@ -10,20 +10,26 @@ import {
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-import FloorPickers from '../components/FloorPickers'
+import FloorPicker from '../components/FloorPicker'
 import useStore from '../store'
 import EstateNameInputScreen from './EstateNameInputScreen'
-import LayoutPickers from '../components/LayoutPickers'
+import LayoutPicker from '../components/LayoutPicker'
+import FacingPicker from './FacingPicker'
 
 const CreateListingScreen = ({ navigation }) => {
   const [
-    layoutPickersVisible,
-    setLayoutPickersVisible
+    layoutPickerVisible,
+    setLayoutPickerVisible
   ] = useState(false)
   const [
-    floorPickersVisible,
-    setFloorPickersVisible
+    floorPickerVisible,
+    setFloorPickerVisible
   ] = useState(false)
+  const [
+    facingPickerVisible,
+    setFacingPickerVisible
+  ] = useState(false)
+
   const {
     city,
     estateName,
@@ -31,16 +37,20 @@ const CreateListingScreen = ({ navigation }) => {
     area,
     setArea,
     floor,
-    totalFloors
+    totalFloors,
+    facing
   } = useStore()
 
-  const openLayoutPickers = () => {
-    setLayoutPickersVisible(true)
+  const openLayoutPicker = () => {
+    setLayoutPickerVisible(true)
   }
 
-  const openFloorPickers = () => {
-    setFloorPickersVisible(true)
+  const openFloorPicker = () => {
+    setFloorPickerVisible(true)
   }
+
+  const openFacingPicker = () =>
+    setFacingPickerVisible(true)
 
   const toCitiesListScreen = () => {
     navigation.navigate('CitiesListScreen')
@@ -92,7 +102,7 @@ const CreateListingScreen = ({ navigation }) => {
           <Text style={styles.text}>户型</Text>
           <Pressable
             style={styles.iconContainer}
-            onPress={openLayoutPickers}
+            onPress={openLayoutPicker}
           >
             {layout ? (
               <Text style={styles.text}>{layout}</Text>
@@ -106,10 +116,10 @@ const CreateListingScreen = ({ navigation }) => {
             />
           </Pressable>
         </View>
-        {layoutPickersVisible ? (
-          <LayoutPickers
-            visible={layoutPickersVisible}
-            setVisible={setLayoutPickersVisible}
+        {layoutPickerVisible ? (
+          <LayoutPicker
+            visible={layoutPickerVisible}
+            setVisible={setLayoutPickerVisible}
           />
         ) : null}
         <View style={styles.itemContainer}>
@@ -120,7 +130,8 @@ const CreateListingScreen = ({ navigation }) => {
               placeholder='请输入'
               value={area}
               onChangeText={setArea}
-              keyboardType='numeric'
+              returnKeyType='done'
+              keyboardType='numbers-and-punctuation'
             />
             <Text style={styles.text}>m²</Text>
           </View>
@@ -129,7 +140,7 @@ const CreateListingScreen = ({ navigation }) => {
           <Text style={styles.text}>楼层</Text>
           <Pressable
             style={styles.iconContainer}
-            onPress={openFloorPickers}
+            onPress={openFloorPicker}
           >
             {floor ? (
               <Text style={styles.text}>{floor}</Text>
@@ -143,10 +154,34 @@ const CreateListingScreen = ({ navigation }) => {
             />
           </Pressable>
         </View>
-        {floorPickersVisible ? (
-          <FloorPickers
-            visible={floorPickersVisible}
-            setVisible={setFloorPickersVisible}
+        {floorPickerVisible ? (
+          <FloorPicker
+            visible={floorPickerVisible}
+            setVisible={setFloorPickerVisible}
+          />
+        ) : null}
+        <View style={styles.itemContainer}>
+          <Text style={styles.text}>朝向</Text>
+          <Pressable
+            style={styles.iconContainer}
+            onPress={openFacingPicker}
+          >
+            {facing ? (
+              <Text style={styles.text}>{facing}</Text>
+            ) : (
+              <Text style={styles.placeholder}>请选择</Text>
+            )}
+            <Ionicons
+              name='chevron-forward'
+              size={24}
+              color='black'
+            />
+          </Pressable>
+        </View>
+        {facingPickerVisible ? (
+          <FacingPicker
+            visible={facingPickerVisible}
+            setVisible={setFacingPickerVisible}
           />
         ) : null}
       </View>
