@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import SegmentedPicker from 'react-native-segmented-picker'
 import useStore from '../store'
 
-const Pickers = ({ visible, setVisible }) => {
+const LayoutPickers = ({ visible, setVisible }) => {
   const pickersRef = useRef()
   const {
     bedroom,
@@ -23,7 +23,7 @@ const Pickers = ({ visible, setVisible }) => {
     setLayout(
       `${selections.bedroom}${selections.livingroom}${selections.bathroom}}`
     )
-    setVisible(!visible)
+    setVisible(false)
   }
 
   const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -34,7 +34,6 @@ const Pickers = ({ visible, setVisible }) => {
       visible={visible}
       onCancel={onCancel}
       onConfirm={onConfirm}
-      pickerItemTextColor='dodgerblue'
       confirmText='确定'
       options={[
         {
@@ -63,6 +62,6 @@ const Pickers = ({ visible, setVisible }) => {
   )
 }
 
-export default Pickers
+export default LayoutPickers
 
 const styles = StyleSheet.create({})
