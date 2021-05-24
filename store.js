@@ -68,7 +68,12 @@ const useStore = create(set => ({
   floor: '',
   setFloor: value => set(() => ({ floor: value })),
   facing: '',
-  setFacing: value => set(() => ({ facing: value }))
+  setFacing: value => set(() => ({ facing: value })),
+  decoration: '',
+  setDecoration: value =>
+    set(() => ({ decoration: value })),
+  type: '',
+  setType: value => set(() => ({ type: value }))
 }))
 
 export default useStore

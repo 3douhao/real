@@ -12,9 +12,12 @@ import { Ionicons } from '@expo/vector-icons'
 
 import FloorPicker from '../components/FloorPicker'
 import useStore from '../store'
-import EstateNameInputScreen from './EstateNameInputScreen'
+import EstateNameInputScreen from '../components/EstateNameInputScreen'
 import LayoutPicker from '../components/LayoutPicker'
-import FacingPicker from './FacingPicker'
+import FacingPicker from '../components/FacingPicker'
+import DecorationPicker from '../components/DecorationPicker'
+import ItemForCreatingListing from '../components/ItemForCreatingListing'
+import TypePicker from '../components/TypePicker'
 
 const CreateListingScreen = ({ navigation }) => {
   const [
@@ -29,6 +32,14 @@ const CreateListingScreen = ({ navigation }) => {
     facingPickerVisible,
     setFacingPickerVisible
   ] = useState(false)
+  const [
+    decorationPickerVisible,
+    setDecorationPickerVisible
+  ] = useState(false)
+  const [
+    typePickerVisible,
+    setTypePickerVisible
+  ] = useState(false)
 
   const {
     city,
@@ -38,7 +49,9 @@ const CreateListingScreen = ({ navigation }) => {
     setArea,
     floor,
     totalFloors,
-    facing
+    facing,
+    decoration,
+    type
   } = useStore()
 
   const openLayoutPicker = () => {
@@ -51,6 +64,11 @@ const CreateListingScreen = ({ navigation }) => {
 
   const openFacingPicker = () =>
     setFacingPickerVisible(true)
+
+  const openDecorationPicker = () =>
+    setDecorationPickerVisible(true)
+
+  const openTypePicker = () => setTypePickerVisible(true)
 
   const toCitiesListScreen = () => {
     navigation.navigate('CitiesListScreen')
@@ -182,6 +200,54 @@ const CreateListingScreen = ({ navigation }) => {
           <FacingPicker
             visible={facingPickerVisible}
             setVisible={setFacingPickerVisible}
+          />
+        ) : null}
+        <View style={styles.itemContainer}>
+          <Text style={styles.text}>装修</Text>
+          <Pressable
+            style={styles.iconContainer}
+            onPress={openDecorationPicker}
+          >
+            {decoration ? (
+              <Text style={styles.text}>{decoration}</Text>
+            ) : (
+              <Text style={styles.placeholder}>请选择</Text>
+            )}
+            <Ionicons
+              name='chevron-forward'
+              size={24}
+              color='black'
+            />
+          </Pressable>
+        </View>
+        {decorationPickerVisible ? (
+          <DecorationPicker
+            visible={decorationPickerVisible}
+            setVisible={setDecorationPickerVisible}
+          />
+        ) : null}
+        <View style={styles.itemContainer}>
+          <Text style={styles.text}>房屋类型</Text>
+          <Pressable
+            style={styles.iconContainer}
+            onPress={openTypePicker}
+          >
+            {type ? (
+              <Text style={styles.text}>{type}</Text>
+            ) : (
+              <Text style={styles.placeholder}>请选择</Text>
+            )}
+            <Ionicons
+              name='chevron-forward'
+              size={24}
+              color='black'
+            />
+          </Pressable>
+        </View>
+        {typePickerVisible ? (
+          <TypePicker
+            visible={typePickerVisible}
+            setVisible={setTypePickerVisible}
           />
         ) : null}
       </View>

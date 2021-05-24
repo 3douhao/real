@@ -37,6 +37,10 @@ const FloorPicker = ({ visible, setVisible }) => {
 
   return (
     <SegmentedPicker
+      defaultSelections={{
+        floor: '1',
+        totalFloors: '共1层'
+      }}
       ref={pickerRef}
       visible={visible}
       onValueChange={({ value }) => {
