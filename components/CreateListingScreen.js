@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {
   Keyboard,
+  Switch,
   View,
   TextInput,
   Text,
@@ -40,6 +41,9 @@ const CreateListingScreen = ({ navigation }) => {
     typePickerVisible,
     setTypePickerVisible
   ] = useState(false)
+  const [isEnabled, setIsEnabled] = useState(true)
+
+  const toggleSwitch = () => setIsEnabled(prev => !prev)
 
   const {
     city,
@@ -51,7 +55,11 @@ const CreateListingScreen = ({ navigation }) => {
     totalFloors,
     facing,
     decoration,
-    type
+    type,
+    elevator,
+    setElevator,
+    price,
+    setPrice
   } = useStore()
 
   const openLayoutPicker = () => {
@@ -70,6 +78,11 @@ const CreateListingScreen = ({ navigation }) => {
 
   const openTypePicker = () => setTypePickerVisible(true)
 
+  const onValueChange = () => {
+    toggleSwitch()
+    isEnabled ? setElevator('没有') : setElevator('有')
+  }
+
   const toCitiesListScreen = () => {
     navigation.navigate('CitiesListScreen')
   }
@@ -77,6 +90,7 @@ const CreateListingScreen = ({ navigation }) => {
   const toEstateNameInputScreen = () => {
     navigation.navigate('EstateNameInputScreen')
   }
+
   return (
     <SafeAreaView>
       <View style={styles.itemsContainer}>
@@ -142,7 +156,7 @@ const CreateListingScreen = ({ navigation }) => {
         ) : null}
         <View style={styles.itemContainer}>
           <Text style={styles.text}>面积</Text>
-          <View style={styles.textInputContainer}>
+          <View style={styles.areaInputContainer}>
             <TextInput
               style={styles.textInput}
               placeholder='请输入'
@@ -250,6 +264,34 @@ const CreateListingScreen = ({ navigation }) => {
             setVisible={setTypePickerVisible}
           />
         ) : null}
+        <View style={styles.itemContainer}>
+          <Text style={styles.text}>电梯</Text>
+          <View style={styles.switchContainer}>
+            <Switch
+              trackColor={{ true: 'dodgerblue' }}
+              onValueChange={onValueChange}
+              thumbColor='white'
+              value={isEnabled}
+            />
+            <Text style={styles.text}>{elevator}</Text>
+          </View>
+        </View>
+        <View style={styles.itemContainer}>
+          <Text style={styles.text}>售价</Text>
+          <View style={styles.priceInputContainer}>
+            <TextInput
+              returnKeyType='done'
+              keyboardType='numbers-and-punctuation'
+              placeholder='请输入'
+              value={price}
+              onChangeText={setPrice}
+              maxLength={5}
+              style={styles.text}
+            />
+            <Text style={styles.text}>万</Text>
+          </View>
+        </View>
+        <Text>{price}</Text>
       </View>
     </SafeAreaView>
   )
@@ -278,12 +320,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
-  textInputContainer: {
+  areaInputContainer: {
     flexDirection: 'row',
     alignItems: 'flex-end'
   },
   textInput: {
     fontSize: 20,
     marginRight: 5
+  },
+  switchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 100,
+    justifyContent: 'space-between'
+  },
+  priceInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 90,
+    justifyContent: 'space-between'
   }
 })
