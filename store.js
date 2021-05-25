@@ -77,7 +77,11 @@ const useStore = create(set => ({
   elevator: '有',
   setElevator: value => set(() => ({ elevator: value })),
   price: '',
-  setPrice: value => set(() => ({ price: value }))
+  setPrice: value => set(() => ({ price: value })),
+  name: '',
+  setName: value => set(() => ({ name: value })),
+  gender: '先生',
+  setGender: value => set(() => ({ gender: value }))
 }))
 
 export default useStore
