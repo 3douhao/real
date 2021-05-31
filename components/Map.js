@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Pressable
 } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import { Entypo } from '@expo/vector-icons'
 
 const Map = ({ navigation }) => {
   const onPress = () => {
@@ -13,12 +13,8 @@ const Map = ({ navigation }) => {
   }
   return (
     <Pressable onPress={onPress} style={styles.container}>
-      <Ionicons
-        name='location-outline'
-        size={12}
-        color='black'
-      />
-      <Text style={styles.text}>Map</Text>
+      <Entypo name='location' size={20} color='black' />
+      <Text style={styles.text}>地图</Text>
     </Pressable>
   )
 }
@@ -31,6 +27,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    marginLeft: 5
+    marginLeft: 5,
+    fontSize: 20
   }
 })

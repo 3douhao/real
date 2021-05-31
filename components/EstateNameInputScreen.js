@@ -37,6 +37,7 @@ const EstateNameInputScreen = ({ navigation }) => {
           padding={10}
           height={30}
           autoFocus={true}
+          borderWidth={1}
         />
         <Pressable onPress={onPress}>
           <Text style={styles.text}>取消</Text>

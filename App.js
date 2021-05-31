@@ -21,6 +21,7 @@ import CitiesListScreen from './components/CitiesListScreen'
 import DetailsScreen from './components/DetailsScreen'
 import TabScreen from './components/TabScreen'
 import SearchResultScreen from './components/SearchResultScreen'
+import SearchTermInputScreen from './components/SearchTermInputScreen'
 
 const Stack = createStackNavigator()
 
@@ -116,6 +117,25 @@ export default function App() {
         <Stack.Screen
           name='EstateNameInputScreen'
           component={EstateNameInputScreen}
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: false,
+            title: '请输入小区名',
+            headerBackImage: () => (
+              <Ionicons
+                name='chevron-back'
+                size={24}
+                color='black'
+              />
+            ),
+            headerLeftContainerStyle: {
+              paddingLeft: 10
+            }
+          }}
+        />
+        <Stack.Screen
+          name='SearchTermInputScreen'
+          component={SearchTermInputScreen}
           options={{
             headerShown: true,
             headerBackTitleVisible: false,

@@ -31,9 +31,11 @@ export default SelectCity
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginLeft: 5
   },
   text: {
-    marginRight: 5
+    marginRight: 5,
+    fontSize: 20
   }
 })

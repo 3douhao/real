@@ -323,6 +323,7 @@ const CreateListingScreen = ({ navigation }) => {
               setVisible={setTypePickerVisible}
             />
           ) : null}
+          <View style={styles.separator}></View>
           <View style={styles.itemContainer}>
             <Text style={styles.text}>电梯</Text>
             <View style={styles.switchContainer}>

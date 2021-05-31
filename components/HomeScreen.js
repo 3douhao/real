@@ -1,55 +1,105 @@
 import React, { useState } from 'react'
-import { Ionicons } from '@expo/vector-icons'
+import {
+  Entypo,
+  FontAwesome5,
+  MaterialIcons
+} from '@expo/vector-icons'
 import {
   View,
   Button,
   TextInput,
   StyleSheet,
-  Text
+  Text,
+  Pressable
 } from 'react-native'
+
 import Card from '../components/Card'
 import SelectCity from '../components/SelectCity'
 import Map from '../components/Map'
 import CitiesModal from '../components/CitiesModal'
-
 import SearchBox from '../components/SearchBox'
 import AppSafeAreaView from '../components/AppSafeAreaView'
 
 export default function HomeScreen({ navigation }) {
   const [text, setText] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
-  const onChangeText = value => {
-    setText(value)
-  }
   const onPress = screen => {
     navigation.navigate(screen)
   }
+
   return (
     <AppSafeAreaView>
       <CitiesModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
-      <View style={styles.location}>
-        <SelectCity setModalVisible={setModalVisible} />
-        <Map navigation={navigation} />
+      <View style={styles.container}>
+        <View style={styles.innerTopContainer}>
+          <View style={styles.withModalContainer}>
+            <SelectCity setModalVisible={setModalVisible} />
+            <Text style={styles.bar}>|</Text>
+            <Pressable
+              style={styles.searchBoxContainer}
+              onPress={() =>
+                onPress('SearchTermInputScreen')
+              }
+            >
+              <SearchBox
+                placeholder='搜小区'
+                editable={false}
+                setText={setText}
+                padding={10}
+                margin={0}
+                height={40}
+                text={text}
+                autoFocus={false}
+                borderWidth={0}
+                pointerEvents='none'
+              />
+            </Pressable>
+          </View>
+          <Map navigation={navigation} />
+        </View>
+        <View style={styles.pressableContainer}>
+          <Pressable style={styles.pressable}>
+            <MaterialIcons
+              name='house'
+              size={30}
+              color='black'
+            />
+            <Text style={styles.text}>二手房</Text>
+          </Pressable>
+          <Pressable style={styles.pressable}>
+            <MaterialIcons
+              name='apartment'
+              size={30}
+              color='black'
+            />
+            <Text style={styles.text}>租房</Text>
+          </Pressable>
+          <Pressable style={styles.pressable}>
+            <FontAwesome5
+              name='building'
+              size={30}
+              color='black'
+            />
+            <Text style={styles.text}>写字楼</Text>
+          </Pressable>
+          <Pressable style={styles.pressable}>
+            <Entypo name='shop' size={30} color='black' />
+            <Text style={styles.text}>商铺</Text>
+          </Pressable>
+          <Pressable style={styles.pressable}>
+            <FontAwesome5
+              name='warehouse'
+              size={30}
+              color='black'
+            />
+            <Text style={styles.text}>厂房库房</Text>
+          </Pressable>
+        </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <Button title='Rent' />
-        <Button
-          title='Sell'
-          onPress={() => onPress('CreateListingScreen')}
-        />
-      </View>
-      <SearchBox
-        placeholder='Start searching here'
-        setText={setText}
-        padding={10}
-        margin={10}
-        height={40}
-        text={text}
-        autoFocus={false}
-      />
+
       <View style={styles.cardContainer}>
         <Card />
         <Card />
@@ -68,8 +118,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flex: 1
   },
-  buttonContainer: {
-    marginVertical: 15,
+  pressableContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
@@ -87,10 +136,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 20
   },
-  location: {
+  innerTopContainer: {
     marginHorizontal: 10,
-    marginVertical: 5,
+    marginVertical: 10,
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  searchBoxContainer: {
+    flex: 1
+  },
+  withModalContainer: {
+    backgroundColor: 'white',
+    height: 40,
+    flexDirection: 'row',
+    flex: 1,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    marginRight: 10,
+    alignItems: 'center'
+  },
+  container: {
+    backgroundColor: '#f0f0f0',
+    paddingVertical: 5
+  },
+  bar: {
+    fontSize: 20,
+    color: 'lightgray',
+    marginLeft: 10
+  },
+  pressable: {
+    alignItems: 'center'
+  },
+  text: {
+    fontSize: 18,
+    marginVertical: 5
   }
 })

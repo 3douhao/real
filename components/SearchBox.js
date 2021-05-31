@@ -1,35 +1,41 @@
 import React, { useState } from 'react'
 import {
-  TextInput,
-  View,
+  StyleSheet,
   Text,
-  StyleSheet
+  TextInput,
+  View
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 const SearchBox = ({
-  text,
-  setText,
-  placeholder,
+  autoFocus,
+  borderWidth,
+  editable,
+  height,
   margin,
   padding,
-  height,
-  autoFocus
+  placeholder,
+  pointerEvents,
+  setText,
+  text
 }) => {
   const styles = StyleSheet.create({
     inputContainer: {
+      alignItems: 'center',
       borderColor: 'gray',
       borderRadius: 5,
-      flexDirection: 'row',
-      alignItems: 'center',
       borderWidth: 1,
-      paddingHorizontal: padding,
-      marginHorizontal: margin
+      borderWidth: borderWidth,
+      flex: 1,
+      flexDirection: 'row',
+      marginHorizontal: margin,
+      paddingHorizontal: padding
     },
     input: {
       height: height,
       flex: 1,
-      paddingHorizontal: padding
+      paddingHorizontal: padding,
+      fontSize: 20
     }
   })
   const onChangeText = value => setText(value)
@@ -37,11 +43,13 @@ const SearchBox = ({
     <View style={styles.inputContainer}>
       <Ionicons name='search' size={24} color='gray' />
       <TextInput
+        editable={editable}
         value={text}
         onChangeText={onChangeText}
         placeholder={placeholder}
         style={styles.input}
         autoFocus={autoFocus}
+        pointerEvents={pointerEvents}
       />
     </View>
   )

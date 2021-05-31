@@ -50,6 +50,7 @@ const CitiesModal = ({
           height={30}
           setText={setText}
           autoFocus={true}
+          borderWidth={1}
         />
       </View>
       <CitiesListForLocating />
