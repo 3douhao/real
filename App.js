@@ -89,6 +89,21 @@ export default function App() {
         <Stack.Screen
           name='SearchResultScreen'
           component={SearchResultScreen}
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: false,
+            title: '搜索结果',
+            headerBackImage: () => (
+              <Ionicons
+                name='chevron-back'
+                size={24}
+                color='black'
+              />
+            ),
+            headerLeftContainerStyle: {
+              paddingLeft: 10
+            }
+          }}
         />
 
         <Stack.Screen

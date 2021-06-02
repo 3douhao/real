@@ -8,14 +8,16 @@ import {
 import { Ionicons } from '@expo/vector-icons'
 
 const SearchBox = ({
+  flex = 0,
   autoFocus,
   borderWidth,
-  editable,
+  marginTop = 0,
   height,
+  backgroundColor = 'white',
+  editable = 'true',
   margin,
   padding,
   placeholder,
-  pointerEvents,
   setText,
   text
 }) => {
@@ -24,24 +26,27 @@ const SearchBox = ({
       alignItems: 'center',
       borderColor: 'gray',
       borderRadius: 5,
-      borderWidth: 1,
       borderWidth: borderWidth,
-      flex: 1,
+      flex: flex,
+      marginTop: marginTop,
       flexDirection: 'row',
       marginHorizontal: margin,
       paddingHorizontal: padding
     },
     input: {
-      height: height,
       flex: 1,
       paddingHorizontal: padding,
-      fontSize: 20
+      fontSize: 20,
+      height: height,
+      backgroundColor: 'white',
+      borderWidth: 0,
+      backgroundColor: backgroundColor
     }
   })
   const onChangeText = value => setText(value)
   return (
     <View style={styles.inputContainer}>
-      <Ionicons name='search' size={24} color='gray' />
+      <Ionicons name='search' size={24} color='lightgray' />
       <TextInput
         editable={editable}
         value={text}
@@ -49,7 +54,6 @@ const SearchBox = ({
         placeholder={placeholder}
         style={styles.input}
         autoFocus={autoFocus}
-        pointerEvents={pointerEvents}
       />
     </View>
   )

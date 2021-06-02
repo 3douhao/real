@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+  Ionicons,
   Entypo,
   FontAwesome5,
   MaterialIcons
@@ -17,11 +18,9 @@ import Card from '../components/Card'
 import SelectCity from '../components/SelectCity'
 import Map from '../components/Map'
 import CitiesModal from '../components/CitiesModal'
-import SearchBox from '../components/SearchBox'
 import AppSafeAreaView from '../components/AppSafeAreaView'
 
 export default function HomeScreen({ navigation }) {
-  const [text, setText] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const onPress = screen => {
     navigation.navigate(screen)
@@ -44,18 +43,12 @@ export default function HomeScreen({ navigation }) {
                 onPress('SearchTermInputScreen')
               }
             >
-              <SearchBox
-                placeholder='搜小区'
-                editable={false}
-                setText={setText}
-                padding={10}
-                margin={0}
-                height={40}
-                text={text}
-                autoFocus={false}
-                borderWidth={0}
-                pointerEvents='none'
+              <Ionicons
+                name='search'
+                size={24}
+                color='lightgray'
               />
+              <Text style={styles.placeholder}>搜小区</Text>
             </Pressable>
           </View>
           <Map navigation={navigation} />
@@ -143,7 +136,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   searchBoxContainer: {
-    flex: 1
+    paddingHorizontal: 10,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   withModalContainer: {
     backgroundColor: 'white',
@@ -170,5 +166,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     marginVertical: 5
+  },
+  placeholder: {
+    fontSize: 18,
+    color: 'lightgray',
+    marginLeft: 5
   }
 })
