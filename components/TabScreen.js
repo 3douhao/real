@@ -4,10 +4,12 @@ import { View, Text, StyleSheet } from 'react-native'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
+import CreateListingScreen from '../components/CreateListingScreen'
 import ProfileScreen from '../components/ProfileScreen'
 import HomeScreen from '../components/HomeScreen'
 import NewsScreen from '../components/NewsScreen'
 import WebViewScreen from '../components/WebViewScreen'
+import ChooseWhatTypeOfListingToCreate from './ChooseWhatTypeOfListingToCreate'
 
 const Tab = createMaterialBottomTabNavigator()
 
@@ -23,25 +25,25 @@ const TabScreen = () => {
         name='HomeScreen'
         component={HomeScreen}
         options={{
-          title: 'Home',
+          title: '首页',
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name='home'
-              size={focused ? 26 : 20}
+              size={focused ? 24 : 20}
               color={focused ? 'dodgerblue' : 'gray'}
             />
           )
         }}
       />
       <Tab.Screen
-        name='NewsScreen'
-        component={NewsScreen}
+        name='CreateListingScreen'
+        component={CreateListingScreen}
         options={{
-          title: 'News',
+          title: '发布房源',
           tabBarIcon: ({ focused }) => (
-            <MaterialCommunityIcons
-              name='home'
-              size={focused ? 26 : 20}
+            <Ionicons
+              name='add-circle'
+              size={focused ? 24 : 20}
               color={focused ? 'dodgerblue' : 'gray'}
             />
           )
@@ -51,12 +53,12 @@ const TabScreen = () => {
         name='ProfileScreen'
         component={ProfileScreen}
         options={{
-          title: 'Profile',
+          title: '我的',
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name='account'
               color={focused ? 'dodgerblue' : 'gray'}
-              size={focused ? 26 : 20}
+              size={focused ? 24 : 20}
             />
           )
         }}

@@ -13,6 +13,7 @@ import {
 } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
+import ChooseWhatTypeOfListingToCreate from './components/ChooseWhatTypeOfListingToCreate'
 import EstateNameInputScreen from './components/EstateNameInputScreen'
 import WebViewScreen from './components/WebViewScreen'
 import CityInputScreen from './components/CityInputScreen'
@@ -106,6 +107,25 @@ export default function App() {
           }}
         />
 
+        <Stack.Screen
+          name='ChooseWhatTypeOfListingToCreate'
+          component={ChooseWhatTypeOfListingToCreate}
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: false,
+            title: '请选择发布房源的类型',
+            headerBackImage: () => (
+              <Ionicons
+                name='chevron-back'
+                size={24}
+                color='black'
+              />
+            ),
+            headerLeftContainerStyle: {
+              paddingLeft: 10
+            }
+          }}
+        />
         <Stack.Screen
           name='DetailsScreen'
           component={DetailsScreen}

@@ -52,12 +52,19 @@ const CreateListingScreen = ({ navigation }) => {
   const [isGenderEnabled, setIsGenderEnabled] = useState(
     true
   )
+  const [
+    isTradingTypeEnabled,
+    setIsTradingTypeEnabled
+  ] = useState(true)
 
   const toggleElevatorSwitch = () =>
     setIsElevatorEnabled(prev => !prev)
 
   const toggleGenderSwitch = () =>
     setIsGenderEnabled(prev => !prev)
+
+  const toggleTradingTypeSwitch = () =>
+    setIsTradingTypeEnabled(prev => !prev)
 
   const {
     city,
@@ -77,7 +84,9 @@ const CreateListingScreen = ({ navigation }) => {
     name,
     setName,
     gender,
-    setGender
+    setGender,
+    tradingType,
+    setTradingType
   } = useStore()
 
   const openLayoutPicker = () => {
@@ -106,6 +115,13 @@ const CreateListingScreen = ({ navigation }) => {
   const onGenderValueChange = () => {
     toggleGenderSwitch()
     isGenderEnabled ? setGender('女士') : setGender('先生')
+  }
+
+  const onTradingTypeChange = () => {
+    toggleTradingTypeSwitch()
+    isTradingTypeEnabled
+      ? setTradingType('出租')
+      : setTradingType('出售')
   }
 
   const toCitiesListScreen = () => {
@@ -150,7 +166,7 @@ const CreateListingScreen = ({ navigation }) => {
           </View>
           <View style={styles.separator}></View>
           <View style={styles.itemContainer}>
-            <Text style={styles.text}>小区</Text>
+            <Text style={styles.text}>小区或楼盘名称</Text>
             <Pressable
               style={styles.iconContainer}
               onPress={toEstateNameInputScreen}
@@ -171,6 +187,50 @@ const CreateListingScreen = ({ navigation }) => {
               />
             </Pressable>
           </View>
+          <View style={styles.separator}></View>
+
+          <View style={styles.separator}></View>
+          <View style={styles.itemContainer}>
+            <Text style={styles.text}>交易类型</Text>
+            <View style={styles.switchContainer}>
+              <Switch
+                trackColor={{ true: 'dodgerblue' }}
+                ios_backgroundColor='green'
+                onValueChange={onTradingTypeChange}
+                thumbColor='white'
+                value={isTradingTypeEnabled}
+              />
+              <Text style={styles.text}>{tradingType}</Text>
+            </View>
+          </View>
+          <View style={styles.separator}></View>
+
+          <View style={styles.itemContainer}>
+            <Text style={styles.text}>房屋类型</Text>
+            <Pressable
+              style={styles.iconContainer}
+              onPress={openTypePicker}
+            >
+              {type ? (
+                <Text style={styles.text}>{type}</Text>
+              ) : (
+                <Text style={styles.placeholder}>
+                  请选择
+                </Text>
+              )}
+              <Ionicons
+                name='chevron-forward'
+                size={24}
+                color='black'
+              />
+            </Pressable>
+          </View>
+          {typePickerVisible ? (
+            <TypePicker
+              visible={typePickerVisible}
+              setVisible={setTypePickerVisible}
+            />
+          ) : null}
           <View style={styles.separator}></View>
           <View style={styles.itemContainer}>
             <Text style={styles.text}>户型</Text>
@@ -298,33 +358,6 @@ const CreateListingScreen = ({ navigation }) => {
           ) : null}
           <View style={styles.separator}></View>
           <View style={styles.itemContainer}>
-            <Text style={styles.text}>房屋类型</Text>
-            <Pressable
-              style={styles.iconContainer}
-              onPress={openTypePicker}
-            >
-              {type ? (
-                <Text style={styles.text}>{type}</Text>
-              ) : (
-                <Text style={styles.placeholder}>
-                  请选择
-                </Text>
-              )}
-              <Ionicons
-                name='chevron-forward'
-                size={24}
-                color='black'
-              />
-            </Pressable>
-          </View>
-          {typePickerVisible ? (
-            <TypePicker
-              visible={typePickerVisible}
-              setVisible={setTypePickerVisible}
-            />
-          ) : null}
-          <View style={styles.separator}></View>
-          <View style={styles.itemContainer}>
             <Text style={styles.text}>电梯</Text>
             <View style={styles.switchContainer}>
               <Switch
@@ -338,7 +371,9 @@ const CreateListingScreen = ({ navigation }) => {
           </View>
           <View style={styles.separator}></View>
           <View style={styles.itemContainer}>
-            <Text style={styles.text}>售价</Text>
+            <Text style={styles.text}>
+              {tradingType === '出售' ? '售价' : '租金'}
+            </Text>
             <View style={styles.priceInputContainer}>
               <TextInput
                 returnKeyType='done'
@@ -349,7 +384,9 @@ const CreateListingScreen = ({ navigation }) => {
                 maxLength={5}
                 style={styles.text}
               />
-              <Text style={styles.text}>万</Text>
+              <Text style={styles.text}>
+                {tradingType === '出售' ? '万' : '元'}
+              </Text>
             </View>
           </View>
           <View style={styles.separator}></View>
