@@ -84,7 +84,10 @@ const useStore = create(set => ({
   setGender: value => set(() => ({ gender: value })),
   tradingType: '出售',
   setTradingType: value =>
-    set(() => ({ tradingType: value }))
+    set(() => ({ tradingType: value })),
+  loggedIn: false,
+  cellNumber: '1234567890',
+  setCellNumber: value => set(() => ({ cellNumber: value }))
 }))
 
 export default useStore

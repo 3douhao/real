@@ -26,13 +26,7 @@ const CitiesModal = ({
   }
   const [text, setText] = useState('')
   return (
-    <Modal
-      visible={modalVisible}
-      animationType='slide'
-      onRequestClose={() =>
-        Alert.alert('modal has been closed')
-      }
-    >
+    <Modal visible={modalVisible} animationType='slide'>
       <View style={styles.optionsContainer}>
         <Pressable onPress={onPress}>
           <Ionicons

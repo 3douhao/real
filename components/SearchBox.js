@@ -14,7 +14,7 @@ const SearchBox = ({
   marginTop = 0,
   height,
   backgroundColor = 'white',
-  editable = 'true',
+  editable = true,
   margin,
   padding,
   placeholder,
